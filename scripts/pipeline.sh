@@ -9,3 +9,8 @@ STAR --runThreadN 4 --runMode genomeGenerate \
 --genomeDir res/genome/star_index/ \
 --genomeFastaFiles res/genome/ecoli.fasta \
 --genomeSAindexNbases 9
+
+for $sampleid in $()
+do
+    bash analyse_script.sh $sampleid
+done
