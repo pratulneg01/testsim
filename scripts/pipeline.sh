@@ -12,8 +12,10 @@ STAR --runThreadN 4 --runMode genomeGenerate \
 --genomeFastaFiles res/genome/ecoli.fasta \
 --genomeSAindexNbases 9
 
-for $sampleid in $(ls data/*.fastq.gz | cut -d"_" -f1 | sed "s:data/::" | sort | uniq)
+for sampleid in $(ls data/*.fastq.gz | cut -d"_" -f1 | sed "s:data/::" | sort | uniq)
 do
-    bash analyse_sample.sh data/${sampleid}_1
-    bash analyse_sample.sh data/${sampleid}_2
+    bash scripts/analyse_sample.sh ${sampleid}
 done
+
+mkdir -p out/multiqc
+multiqc -o out/multiqc .
